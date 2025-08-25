@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Upload, AlertTriangle, CheckCircle, XCircle, Info, FileVideo, Music, Image, FileText } from 'lucide-react';
+// Corrected: Removed unused 'FileText' import
+import { Upload, AlertTriangle, CheckCircle, XCircle, Info, FileVideo, Music, Image } from 'lucide-react';
 
 const YouTubeCopyrightChecker = () => {
   const [activeTab, setActiveTab] = useState('upload');
@@ -98,7 +99,9 @@ const YouTubeCopyrightChecker = () => {
     if (formData.usesMusic && formData.musicSource.includes('commercial')) riskScore += 30;
     if (formData.usesFootage && formData.footageSource.includes('stock')) riskScore += 20;
     if (formData.title.toLowerCase().includes('official') || formData.title.toLowerCase().includes('trailer')) riskScore += 25;
-    if (formData.hasText && formData.textSource.includes('book') || formData.textSource.includes('article')) riskScore += 15;
+    
+    // Corrected: Added parentheses to clarify logic
+    if (formData.hasText && (formData.textSource.includes('book') || formData.textSource.includes('article'))) riskScore += 15;
     
     if (riskScore >= 50) return 'high';
     if (riskScore >= 25) return 'medium';
@@ -562,25 +565,26 @@ const YouTubeCopyrightChecker = () => {
               <div className="bg-white rounded-lg shadow-lg p-6">
                 <h3 className="text-lg font-semibold mb-4">Additional Resources</h3>
                 <div className="grid md:grid-cols-2 gap-4">
+                  {/* Corrected: Replaced href="#" with actual URLs */}
                   <div className="p-4 border border-gray-200 rounded-lg">
                     <h4 className="font-medium mb-2">YouTube Audio Library</h4>
                     <p className="text-sm text-gray-600 mb-2">Free music and sound effects for your videos</p>
-                    <a href="#" className="text-red-600 hover:text-red-700 text-sm font-medium">Visit Library →</a>
+                    <a href="https://www.youtube.com/audiolibrary/" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700 text-sm font-medium">Visit Library →</a>
                   </div>
                   <div className="p-4 border border-gray-200 rounded-lg">
                     <h4 className="font-medium mb-2">Copyright Guidelines</h4>
                     <p className="text-sm text-gray-600 mb-2">Learn about YouTube's copyright policies</p>
-                    <a href="#" className="text-red-600 hover:text-red-700 text-sm font-medium">Read Guidelines →</a>
+                    <a href="https://support.google.com/youtube/answer/2797466" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700 text-sm font-medium">Read Guidelines →</a>
                   </div>
                   <div className="p-4 border border-gray-200 rounded-lg">
                     <h4 className="font-medium mb-2">Fair Use Guidelines</h4>
                     <p className="text-sm text-gray-600 mb-2">Understand when fair use may apply</p>
-                    <a href="#" className="text-red-600 hover:text-red-700 text-sm font-medium">Learn More →</a>
+                    <a href="https://www.youtube.com/about/copyright/fair-use/" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700 text-sm font-medium">Learn More →</a>
                   </div>
                   <div className="p-4 border border-gray-200 rounded-lg">
                     <h4 className="font-medium mb-2">Creative Commons</h4>
                     <p className="text-sm text-gray-600 mb-2">Find freely usable content</p>
-                    <a href="#" className="text-red-600 hover:text-red-700 text-sm font-medium">Browse Content →</a>
+                    <a href="https://creativecommons.org/" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-700 text-sm font-medium">Browse Content →</a>
                   </div>
                 </div>
               </div>
